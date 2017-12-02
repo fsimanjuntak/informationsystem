@@ -1,6 +1,3 @@
-#create nested query and compare the complexity in how to implement this on restful and graphQL
-
-#This code is simulating writing 100000 data points to and reading them from MySQL database
 import datetime
 from datetime import timedelta
 import sys
@@ -24,20 +21,20 @@ conn = MySQLdb.connect(host= "localhost",user="root",passwd="admin",db="assignme
 session = conn.cursor()
 
 #restful method that return list of person
-@app.route('/person/api/v1.0/getPerson', methods=['GET'])
-def get_person():
-    param_id = request.args.get('personid', default = 1, type = int)
+@app.route('/person/<user_id>', methods=['GET'])
+def get_person(user_id):
+    # param_id = request.args.get('personid', default = 1, type = int)
 
     row_person = None
     res_person_friends = None
     try:
 
      #query person information
-     session.execute("select * from person where id=%s"% (param_id))
+     session.execute("select * from person where id=%s"% (user_id))
      row_person = session.fetchone()
 
      #query friend list
-     session.execute("select A.* from person A inner join friends B on A.id = B.friend_id where B.person_id=%s"% (param_id))
+     session.execute("select A.* from person A inner join friends B on A.id = B.friend_id where B.person_id=%s"% (user_id))
      res_person_friends = session.fetchall()
 
     except:
