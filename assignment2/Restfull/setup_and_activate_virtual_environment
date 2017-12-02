@@ -1,9 +1,0 @@
-#install virtual environment
-sudo pip install virtualenv
-sudo apt-get install python-virtualenv
-
-#create venv
-virtualenv venv
-
-#activate venv
-. venv/bin/activate
