@@ -11,7 +11,7 @@ class Persons(SQLAlchemyObjectType):
 
 class PersonType(graphene.ObjectType):
 	name = 'Person'
-	description = '....'
+	description = 'Person Model'
 
 	first_name = graphene.String()
 	last_name = graphene.String()
@@ -19,23 +19,21 @@ class PersonType(graphene.ObjectType):
 	country = graphene.String()
 	friends = graphene.List(lambda: PersonType)
 
-	# return friends
 	def resolve_friends(person, args, context, info):
 		query = Persons.get_query(context)
 		return [query.filter(PersonModel.id == f.friend_id).first() for f in person.friends]
 
 class Query(graphene.ObjectType):
 	node = relay.Node.Field()
-	all_persons = SQLAlchemyConnectionField(Persons)
 	find_person = graphene.Field(
 		PersonType,
 		id = graphene.String()
 	)
 
 	def resolve_find_person(self, args, context, info):
+		print(context)
 		query = Persons.get_query(context)
 		id = args.get('id')
-		# you can also use and_ with filter() eg: filter(and_(param1, param2)).first()
 		return query.filter(PersonModel.id == id).first()
 
 schema = graphene.Schema(query=Query, types=[Persons])

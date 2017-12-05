@@ -1,0 +1,10 @@
+#steps
+1. create virtual environment
+2. install required libraries
+3. activate virtual environment
+4. execute schema_and_table.sql and insert_person.sql in sequential order
+5. run generate_random_friends.sql
+6. run app_graphql.py
+7. run test_graphql.py to test grapql api
+8. run app_restfull.sql
+9. run test_restfullapi.sql to test restful api
