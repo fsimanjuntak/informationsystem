@@ -40,7 +40,7 @@ function generateRandomBulk() {
    console.log("current avg: "+current_avg_sma+" previous avg:"+(prev_avg)+" delta:"+delta);
     
    if (delta > 0.5){
-    processReadingOnIoTDevice(randomnumber);
+    processReadingOnIoTDevice(current_avg_sma);
    }
   index = 0;
   sumof_10vals = 0;
