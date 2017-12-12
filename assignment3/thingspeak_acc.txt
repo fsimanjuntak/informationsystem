@@ -1,2 +1,0 @@
-email: franzteve@gmail.com
-password: N0p@ssw0rd
