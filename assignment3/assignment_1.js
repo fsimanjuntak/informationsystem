@@ -57,8 +57,8 @@ function sendToEdgeNode(data){
   var ThingSpeakClient = require('thingspeakclient');
   var client = new ThingSpeakClient({server:'https://api.thingspeak.com'});
   
-  client.attachChannel(382541, {writeKey:'P7TPFYL97U3GM5UE'});
-  client.updateChannel(382541, {field1: data}, function(err, resp) {
+  client.attachChannel(383403, {writeKey:'XIZ8L2QV95FZLKZD'});
+  client.updateChannel(383403, {field1: data}, function(err, resp) {
     if (!err && resp > 0) {
         console.log('update successfully. Entry number was: ' + resp);
     }
@@ -66,5 +66,5 @@ function sendToEdgeNode(data){
  
 }
 
-/*setInterval(generateRandomForSingleNumber, 1000);*/
+//setInterval(generateRandomForSingleNumber, 1000);
 setInterval(generateRandomBulk, 1000);
