@@ -1,0 +1,8 @@
+Execute this script first:
+
+1. upgrade bode js to the latest version
+https://askubuntu.com/questions/426750/how-can-i-update-my-nodejs-to-the-latest-version
+2. npm install	–g	ethereumjs-testrpc
+
+
+
