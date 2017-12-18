@@ -36,9 +36,9 @@ contract Survey{
 	
 	// set modifier which will be applied on several functions
 	modifier onlyDirector {
-        require(msg.sender == director);
-        _;
-    }
+        	require(msg.sender == director);
+        	_;
+        }
 	
 	// create question
 	function createQuestion(string questiondescription) onlyDirector private {
