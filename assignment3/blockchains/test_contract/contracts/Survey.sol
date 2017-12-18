@@ -31,7 +31,7 @@ contract Survey{
 		//create shareholders
 		for (uint i = 0; i < shareholderAddress.length; i++) {
 			shareholders[shareholderAddress[i]].addr = shareholderAddress[i]; 
-        }
+        	}
 	}
 	
 	// set modifier which will be applied on several functions
@@ -87,7 +87,7 @@ contract Survey{
 	// give a vote
 	function vote(uint questionid, uint answer) public {
 		address sender = msg.sender;
-        Question storage question = questions[questionid];	
+        	Question storage question = questions[questionid];	
 		
 		//check if sender is not director and question is still open
 		require(sender != director);
@@ -101,11 +101,11 @@ contract Survey{
 				break;
 			}
 		}
-    }
+    	}
 	
 	//majority decision
 	function majorityDecision(uint questionid) public view returns (uint majorityanswer)
-    {
+    	{
 		address sender = msg.sender;
 		Question storage question = questions[questionid];	
 		bool isabletoseetheresult = false;
