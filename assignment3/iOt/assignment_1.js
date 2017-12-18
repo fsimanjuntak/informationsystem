@@ -8,12 +8,12 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function generateRandomForSingleMeasurement() {
+function generateRandomNumberForSingleMeasurement() {
   var randomnumber = getRandomArbitrary(0,5);
   processReadingOnIoTDeviceSingleMeasurement(randomnumber);
 }
 
-function generateRandomForBulk() { 
+function generateRandomNumberForBulk() { 
  var randomnumber = getRandomArbitrary(0,5); 
  processReadingOnIoTDeviceBulk(randomnumber);
 }
@@ -83,5 +83,5 @@ function sendToEdgeNode(sma,dt){
   });
 }
 
-setInterval(generateRandomForSingleMeasurement, 1000);
-//setInterval(generateRandomForBulk, 1000);
+setInterval(generateRandomNumberForSingleMeasurement, 1000);
+//setInterval(generateRandomNumberForBulk, 1000);
