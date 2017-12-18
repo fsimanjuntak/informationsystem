@@ -56,7 +56,7 @@ function processReadingOnIoTDeviceBulk(randomnumber){
    }
    console.log("current avg: "+current_avg_sma+" previous avg:"+(prev_avg)+" delta:"+delta);
 
-   // if delta > 0.1, then send to edge node
+   // if delta > 0.5, then send to edge node
    if (delta > 0.5){
 	 sendToEdgeNode(current_avg_sma,now);
 	 console.log(current_avg_sma);
