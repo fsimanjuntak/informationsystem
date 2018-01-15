@@ -6,6 +6,7 @@ min_confidence = 0.8
 
 #open the file and read the data
 input_file = open('groceries.txt', 'r')
+output_file = open('a_rules.txt', 'w')
 
 #global array to store each transaction, which is a list => list of lists
 transactions_list = []
@@ -71,20 +72,34 @@ def generate_association_rules(min_support, min_confidence):
 
     # Association rules part
     rules = list()
-    # for all frequent itemsets
+    # for all frequent itemsets. Search for them as tuples of (key, value) in the dictionary
     for item, support in freq_itemset.items():
         #there should be at least a pair of items
         if len(item) > 1:
-            #check for non empty subsets
+            #check for each subset in the given itemset
             for obj1 in subsets(item):
+                #the second object is the difference between the itemset and the first object = all objects in itemset != obj1
                 obj2 = item.difference(obj1)
                 if obj2:
                     obj1 = frozenset(obj1)
+                    #the join between the 2 object is not always the itemset, it can be a subset of it
                     obj_join = obj1 | obj2
+                    #compute confidence
                     confidence = float(freq_itemset[obj_join]) / freq_itemset[obj1]
+                    #if its confidence is greater than the min one, append it to the list
                     if confidence >= min_confidence:
                         rules.append((obj1, obj2, confidence))
     return rules, freq_itemset
 
 association_rules, freq_itemset = generate_association_rules(min_support, min_confidence)
-print association_rules.__sizeof__()
+print "Number of association rules", len(association_rules)
+
+for item in association_rules:
+    output_file.write(str(item))
+    output_file.write("\n")
+
+for obj1, obj2, confidence in sorted(association_rules, key=lambda (obj1, obj2, confidence): confidence, reverse=True):
+    print('[R] {} => {} : {}'.format(tuple(obj1), tuple(obj2), round(confidence, 4)))
+
+
+
