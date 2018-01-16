@@ -98,8 +98,13 @@ for item in association_rules:
     output_file.write(str(item))
     output_file.write("\n")
 
+counter = 0;
 for obj1, obj2, confidence in sorted(association_rules, key=lambda (obj1, obj2, confidence): confidence, reverse=True):
     print('[R] {} => {} : {}'.format(tuple(obj1), tuple(obj2), round(confidence, 4)))
+    if(counter == 30):
+        break;
+    counter = counter+1;
+
 
 
 
