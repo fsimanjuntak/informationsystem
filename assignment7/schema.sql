@@ -52,7 +52,7 @@ CREATE TRIGGER update_artistname BEFORE INSERT OR UPDATE ON artist
 
 CREATE FUNCTION artistnameToUppercase() RETURNS trigger AS $artistnameToUppercase$
     BEGIN
-        -- change custname to uppercase
+        -- change artist name to uppercase
         NEW.artist_name := UPPER(NEW.artist_name);
         RETURN NEW;
     END;
